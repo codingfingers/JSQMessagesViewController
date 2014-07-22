@@ -364,15 +364,12 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 
     if (messageData.kind == JSQMessageTextKind)
     {
-        /**
-         *  Fixed with diff https://github.com/rahulgautam/JSQMessagesViewController/commit/6846215619e414b625af02a8cd276681188a3421
-         */
+        CGRect stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth - textInsetsTotal, CGFLOAT_MAX)
+                                                             options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                          attributes:@{ NSFontAttributeName : self.messageBubbleFont }
+                                                             context:nil];
         
-        NSAttributedString *string = [[NSAttributedString alloc] initWithString:[messageData text]
-                                                                     attributes:@{ NSFontAttributeName : self.messageBubbleFont }];
-        
-        CGSize stringSize = [self jsq_frameSizeForAttributedString:string
-                                                          maxwidth:maximumTextWidth - textInsetsTotal];
+        CGSize stringSize = CGRectIntegral(stringRect).size;
         
         CGFloat verticalInsets = self.messageBubbleTextViewTextContainerInsets.top + self.messageBubbleTextViewTextContainerInsets.bottom;
         
