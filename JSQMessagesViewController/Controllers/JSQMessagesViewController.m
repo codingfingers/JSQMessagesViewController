@@ -309,7 +309,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.showTypingIndicator = NO;
     
     if (self.automaticallyScrollsToMostRecentMessage) {
-        [self scrollToBottomAnimated:YES];
+        [self scrollToBottomAnimated:NO];
     }
 }
 
