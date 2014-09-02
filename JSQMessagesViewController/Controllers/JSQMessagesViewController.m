@@ -29,6 +29,7 @@
 #import "JSQMessagesCollectionViewCellOutgoing.h"
 #import "JSQMessagesCollectionViewCellIncomingMedia.h"
 #import "JSQMessagesCollectionViewCellOutgoingMedia.h"
+#import "JSQMessagesCollectionViewCellCenteredMedia.h"
 
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
@@ -135,7 +136,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.incomingCellIdentifier = [JSQMessagesCollectionViewCellIncoming cellReuseIdentifier];
     
     self.outgoingMediaCellIdentifier = [JSQMessagesCollectionViewCellOutgoingMedia cellReuseIdentifier];
-    self.incomingMediaCellIdentifier = [JSQMessagesCollectionViewCellIncomingMedia cellReuseIdentifier];;
+    self.incomingMediaCellIdentifier = [JSQMessagesCollectionViewCellIncomingMedia cellReuseIdentifier];
+    self.centeredMediaCellIdentifier = [JSQMessagesCollectionViewCellCenteredMedia cellReuseIdentifier];
 
     self.typingIndicatorColor = [UIColor jsq_messageBubbleLightGrayColor];
     self.showTypingIndicator = NO;
@@ -403,6 +405,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
         }
             break;
+        case JSQMessageCenteredRemoteMediaKind:
+        {
+            cellIdentifier = self.centeredMediaCellIdentifier;
+        }
+            break;
     }
     
     /**
@@ -473,7 +480,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         {
             [mediaHandler setMediaFromImage:messageData.image];
         }
-        else if (messageData.kind == JSQMessageRemoteMediaKind)
+        else if (messageData.kind == JSQMessageRemoteMediaKind
+                 || messageData.kind == JSQMessageCenteredRemoteMediaKind)
         {
             [mediaHandler setMediaFromURL:messageData.url];
         }
@@ -585,6 +593,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         }
             break;
             
+        case JSQMessageCenteredRemoteMediaKind:
         case JSQMessageRemoteMediaKind:
         {
             NSString *remoteURL = [[messageData url] absoluteString];

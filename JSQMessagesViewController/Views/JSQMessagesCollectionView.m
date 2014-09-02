@@ -23,6 +23,7 @@
 #import "JSQMessagesCollectionViewCellOutgoing.h"
 #import "JSQMessagesCollectionViewCellIncomingMedia.h"
 #import "JSQMessagesCollectionViewCellOutgoingMedia.h"
+#import "JSQMessagesCollectionViewCellCenteredMedia.h"
 
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
@@ -54,6 +55,9 @@
     [self registerNib:[JSQMessagesCollectionViewCellOutgoing nib]
           forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellOutgoing cellReuseIdentifier]];
     
+    [self registerNib:[JSQMessagesCollectionViewCellCenteredMedia nib]
+forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellCenteredMedia cellReuseIdentifier]];
+    
     [self registerNib:[JSQMessagesCollectionViewCellIncomingMedia nib]
 forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellIncomingMedia cellReuseIdentifier]];
     
@@ -67,6 +71,8 @@ forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellOutgoingMedia cellReuse
     [self registerNib:[JSQMessagesLoadEarlierHeaderView nib]
           forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
           withReuseIdentifier:[JSQMessagesLoadEarlierHeaderView headerReuseIdentifier]];
+    
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout

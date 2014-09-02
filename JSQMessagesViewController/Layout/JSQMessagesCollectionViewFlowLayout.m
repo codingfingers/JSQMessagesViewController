@@ -375,7 +375,9 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
         
         finalSize = CGSizeMake(stringSize.width, stringSize.height + verticalInsets);
     }
-    else if (messageData.kind == JSQMessageLocalMediaKind || messageData.kind == JSQMessageRemoteMediaKind)
+    else if (messageData.kind == JSQMessageLocalMediaKind
+             || messageData.kind == JSQMessageRemoteMediaKind
+             || messageData.kind == JSQMessageCenteredRemoteMediaKind)
     {
         finalSize = CGSizeMake(100, 100);
     }
