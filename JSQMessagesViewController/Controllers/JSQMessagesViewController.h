@@ -33,6 +33,12 @@
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
                                                          UITextViewDelegate>
 
+
+/**
+ *  Top padding constraint of the collection view.
+ */
+@property (unsafe_unretained, nonatomic) IBOutlet NSLayoutConstraint *collectionViewTopConstraint;
+
 /**
  *  Returns the collection view object managed by this view controller. 
  *  This view controller is the collection view's data source and delegate.
